@@ -2,7 +2,7 @@
   "name": "GrabtharsHammer",
   "private": true,
   "version": "0.0.0",
-  "description": "a Sails application",
+  "description": "a Sails/hubot application",
   "keywords": [],
   "dependencies": {
     "ejs": "2.3.4",
@@ -42,8 +42,8 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ubuntu/GrabtharsHammer.git"
+    "url": "https://github.com/tantanntan/GrabtharsHammer.git"
   },
-  "author": "ubuntu",
-  "license": ""
+  "author": "Toshitaka Tandai(ics-opendev)",
+  "license": "MIT"
 }
