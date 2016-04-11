@@ -57,8 +57,9 @@ module.exports = {
         return res.json(
             200,
             resJson);
-  },
-  responseUser: function(options,content){
+  }
+};
+  function responseUser(options,content){
         request.post(options, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body);
@@ -67,5 +68,4 @@ module.exports = {
             }
         });     
   }
-};
 
