@@ -8,7 +8,7 @@
 module.exports = {
 	callback: function (req, res) {
     	console.log(req.param('result').json);
-    	console.log(req.params.all());
+    	console.log(req.params.all().json);
         var headers = {
             "Content-Type": "application/json; charset=UTF-8",
             "X-Line-ChannelID": sails.config.lineconfig.X_Line_ChannelID,
