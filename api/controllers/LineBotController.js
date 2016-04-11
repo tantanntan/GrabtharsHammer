@@ -35,7 +35,7 @@ module.exports = {
             proxy : process.env.FIXIE_URL,
             headers: headers,
             json: true,
-            body: content
+            body: resJson
         };
 
         request.post(options, function (error, response, body) {
@@ -45,9 +45,9 @@ module.exports = {
                 console.log('error: '+ JSON.stringify(response));
             }
         });
-//        return res.json(
-//            200,
-//            resJson);
+        return res.json(
+            200,
+            resJson);
   }
 };
 
