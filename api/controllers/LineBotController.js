@@ -4,6 +4,7 @@
  * @description :: Server-side logic for managing linebots
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var request = require('request');
 
 module.exports = {
 	callback: function (req, res) {
@@ -29,11 +30,24 @@ module.exports = {
             eventType: "138311608800106203",
             content: content
         };
-        console.log(content);
-        console.log(resJson);
-        return res.json(
-            200,
-            resJson);
+        var options = {
+            url: 'https://trialbot-api.line.me/v1/events',
+            proxy : process.env.FIXIE_URL,
+            headers: headers,
+            json: true,
+            body: content
+        };
+
+        request.post(options, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body);
+            } else {
+                console.log('error: '+ JSON.stringify(response));
+            }
+        });
+//        return res.json(
+//            200,
+//            resJson);
   }
 };
 
