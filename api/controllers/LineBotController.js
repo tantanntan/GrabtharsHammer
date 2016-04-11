@@ -7,12 +7,11 @@
 
 module.exports = {
 	callback: function (req, res) {
-    	console.log(req.params.all());
-    	console.log(req.param('result'));
-    	console.log(req.param('result')[0]);
-    	console.log(req.param('result')[0]['content']);
-    	console.log(req['result'][0]['content']);
-    	console.log(['result'][0]['content']['text']);
+//    	console.log(req.params.all());
+//    	console.log(req.param('result'));
+//    	console.log(req.param('result')[0]);
+//    	console.log(req.param('result')[0]['content']);
+    	var content = req['result'][0]['content'];
         var headers = {
             "Content-Type": "application/json; charset=UTF-8",
             "X-Line-ChannelID": sails.config.lineconfig.X_Line_ChannelID,
@@ -20,16 +19,21 @@ module.exports = {
             "X-Line-Trusted-User-With-ACL": sails.config.lineconfig.X_Line_Trusted_User_With_ACL
         };
         var to_array = [];
-        to_array.push()
+        to_array.push(content['from']);
+        content['text'] = 'へえ、「' + content['text'] + '」ニョロってことですか。がっかり';
 	    
-        return res.json(
-        {
+        res.set({
             "Content-Type": "application/json; charset=UTF-8",
             "X-Line-ChannelID": sails.config.lineconfig.X_Line_ChannelID,
             "X-Line-ChannelSecret" : sails.config.lineconfig.X_Line_ChannelSecret,
             "X-Line-Trusted-User-With-ACL": sails.config.lineconfig.X_Line_Trusted_User_With_ACL
-        }    
-        );
+        });
+        return res.json({
+            to: to_array,
+            toChannel: 1383378250,
+            eventType: "138311608800106203",
+            content: content
+        });
   }
 };
 
