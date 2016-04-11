@@ -7,8 +7,16 @@
 
 module.exports = {
 	callback: function (req, res) {
-    	console.log(req.param("result").json);
+    	console.log(req.param('result').json);
     	console.log(req.params.all());
+        var headers = {
+            "Content-Type": "application/json; charset=UTF-8",
+            "X-Line-ChannelID": sails.config.lineconfig.X_Line_ChannelID,
+            "X-Line-ChannelSecret" : sails.config.lineconfig.X_Line_ChannelSecret,
+            "X-Line-Trusted-User-With-ACL": sails.config.lineconfig.X_Line_Trusted_User_With_ACL
+        };
+        var to_array = [];
+        to_array.push()
 	    
         return res.json(
         {
