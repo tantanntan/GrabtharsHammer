@@ -11,7 +11,7 @@ module.exports = {
 //    	console.log(req.param('result'));
 //    	console.log(req.param('result')[0]);
 //    	console.log(req.param('result')[0]['content']);
-    	var content = req['result'][0]['content'];
+    	var content = req.param('result')[0]['content'];
         var headers = {
             "Content-Type": "application/json; charset=UTF-8",
             "X-Line-ChannelID": sails.config.lineconfig.X_Line_ChannelID,
