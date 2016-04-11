@@ -25,7 +25,7 @@ module.exports = {
         if( text.length > 20 ) {
             content['text'] = "話が長いニョロ・・・。";
         }else{
-            content['text'] = 'へえ、「' + text + '」こと？がっかりニョロよ';
+            content['text'] = 'へえ、「' + text + '」ってこと？がっかりニョロよ';
         }
 	    
         res.set(headers);
