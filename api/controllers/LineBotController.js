@@ -23,14 +23,17 @@ module.exports = {
         content['text'] = 'へえ、「' + content['text'] + '」ニョロってことですか。がっかり';
 	    
         res.set(headers);
-        return res.json(
-            200,
-            {
+        var resJson= {
             to: to_array,
             toChannel: 1383378250,
             eventType: "138311608800106203",
             content: content
-        });
+        };
+        console.log(content);
+        console.log(resJson);
+        return res.json(
+            200,
+            resJson);
   }
 };
 
