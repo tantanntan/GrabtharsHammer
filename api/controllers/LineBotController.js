@@ -7,6 +7,8 @@
 
 module.exports = {
 	callback: function (req, res) {
+    	console.log(req.params.content);
+    	console.log(req.params.to);
     	console.log(req.params.all());
 	    
         return res.json(
