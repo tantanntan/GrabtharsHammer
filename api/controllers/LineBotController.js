@@ -21,7 +21,12 @@ module.exports = {
         };
         var to_array = [];
         to_array.push(content['from']);
-        content['text'] = 'へえ、「' + content['text'] + '」ニョロってことですか。がっかり';
+        var text = content['text'];
+        if( text.length > 20 ) {
+            content['text'] = "話が長いニョロ・・・。";
+        }else{
+            content['text'] = 'へえ、「' + text + '」こと？がっかりニョロよ';
+        }
 	    
         res.set(headers);
         var resJson= {
