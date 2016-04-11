@@ -6,6 +6,13 @@
  */
 var request = require('request');
 
+var headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+    "X-Line-ChannelID": sails.config.lineconfig.X_Line_ChannelID,
+    "X-Line-ChannelSecret" : sails.config.lineconfig.X_Line_ChannelSecret,
+    "X-Line-Trusted-User-With-ACL": sails.config.lineconfig.X_Line_Trusted_User_With_ACL
+};
+
 module.exports = {
 	callback: function (req, res) {
 //    	console.log(req.params.all());
@@ -13,12 +20,6 @@ module.exports = {
 //    	console.log(req.param('result')[0]);
 //    	console.log(req.param('result')[0]['content']);
     	var content = req.param('result')[0]['content'];
-        var headers = {
-            "Content-Type": "application/json; charset=UTF-8",
-            "X-Line-ChannelID": sails.config.lineconfig.X_Line_ChannelID,
-            "X-Line-ChannelSecret" : sails.config.lineconfig.X_Line_ChannelSecret,
-            "X-Line-Trusted-User-With-ACL": sails.config.lineconfig.X_Line_Trusted_User_With_ACL
-        };
         var to_array = [];
         to_array.push(content['from']);
         var text = content['text'];
@@ -27,8 +28,7 @@ module.exports = {
         }else{
             content['text'] = 'へえ、「' + text + '」ってこと？がっかりニョロよ';
         }
-	    
-        res.set(headers);
+
         var resJson= {
             to: to_array,
             toChannel: 1383378250,
@@ -43,9 +43,13 @@ module.exports = {
             body: resJson
         };
 
+        res.set(headers);
+
         request.post(options, function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body);
+//                console.log(body);
+                resJson['content']['text']='寂しいニョロか？';
+                responseUser(options,resJson);
             } else {
                 console.log('error: '+ JSON.stringify(response));
             }
@@ -53,6 +57,15 @@ module.exports = {
         return res.json(
             200,
             resJson);
+  },
+  responseUser: function(options,content){
+        request.post(options, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body);
+            } else {
+                console.log('error: '+ JSON.stringify(response));
+            }
+        });     
   }
 };
 
