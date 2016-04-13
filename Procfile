@@ -1,1 +1,2 @@
-web: bin/hubot -a campfire
+web: npm start
+
