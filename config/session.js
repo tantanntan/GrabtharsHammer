@@ -57,7 +57,7 @@ module.exports.session = {
   ttl: 3600,
   db: process.env.REDIS_DB,
   pass: process.env.REDIS_PASS,
-  prefix: 'grab_sess:'
+  prefix: 'grab_session:'
 
 
   /***************************************************************************
