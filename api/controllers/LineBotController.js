@@ -21,6 +21,7 @@ module.exports = {
         to_array.push(content['from']);
         var text = content['text'];
         var posttext = '';
+        var reptext = '';
 
         var resBody = {
             to: to_array, //destination ids
@@ -39,23 +40,23 @@ module.exports = {
             function(callback){
                 //generate reply
                 if (text.length > 200) {
-                    content['text'] = "話が長いニョロ・・・。";
+                    reptext = "話が長いニョロ・・・。";
                     posttext = "手短にお願いするニョロ。俺忙しいニョロ。"
                 }
                 else {
                     MecabService.message(text,function(flg,res,cnt){
-                        content['text'] = 'へえ、これは「 ' + res + ' 」って読めばいいニョロか？';
+                        reptext = 'へえ、これは「 ' + res + ' 」って読めばいいニョロか？';
                         
                         if(flg){
                             if (! text.trim().length){
-                                content['text'] += 'ってツァ！！沈黙ニョロか！';
+                                reptext += 'ってツァ！！沈黙ニョロか！';
                                 posttext = "恋人同士なら言葉もいらないところニョロが・・・そうもいかないだろ。しゃべれニョロ〜。";
                             }
                             else if((text.length / 3) < cnt ){
-                                content['text'] += '・・・ツァ！！読めない文字入力しすぎだニョロッ！！！！';
+                                reptext += '・・・ツァ！！読めない文字入力しすぎだニョロッ！！！！';
                                 posttext = "日本人なら普通にしゃべるニョロ。ツァ！！";
                             }else{
-                                content['text'] += '・・・読めない文字は・・・仕方ないニョロ。当方機械ニョロ。';
+                                reptext += '・・・読めない文字は・・・仕方ないニョロ。当方機械ニョロ。';
                                 posttext = "もすこしわかりやすい言葉でお願いするニョロ。";
                             }
                         }else{
@@ -63,6 +64,7 @@ module.exports = {
                         }
                     });
                 }
+                options['body']['content']['text'] = reptext;
                 res.set(headers);
                 callback(null,"first");
             },
