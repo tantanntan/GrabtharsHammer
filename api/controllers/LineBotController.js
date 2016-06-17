@@ -62,16 +62,16 @@ module.exports = {
                         }else{
                             posttext = "もっと来いよ、ガツンと来いよ。ニョロ〜！";
                         }
+                        options['body']['content']['text'] = reptext;
+                        console.log("resBody: " + resBody['content']['text']);
+                        console.log("reptext: " + reptext);
+                        res.set(headers);
+                        callback(null,"first");
                     });
                 }
-                options['body']['content']['text'] = reptext;
-                console.log("resBody: " + resBody['content']['text']);
-                console.log("reptext: " + reptext);
-                res.set(headers);
-                callback(null,"first");
             },
             function(callback){
-                options['body']['content']['text'] = reptext;
+//                options['body']['content']['text'] = reptext;
                 console.log("resBody.content: " + resBody['content']);
                 console.log("contentText: " + content['text']);
                 request.post(options, function(error, response, body) {
