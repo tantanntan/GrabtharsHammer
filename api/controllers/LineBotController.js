@@ -65,11 +65,14 @@ module.exports = {
                     });
                 }
                 options['body']['content']['text'] = reptext;
+                console.log("resBody: " + resBody['content']['text']);
+                console.log("reptext: " + reptext);
                 res.set(headers);
                 callback(null,"first");
             },
             function(callback){
-                console.log("resBody: " + resBody['content']['text']);
+                options['body']['content']['text'] = reptext;
+                console.log("resBody.content: " + resBody['content']);
                 console.log("contentText: " + content['text']);
                 request.post(options, function(error, response, body) {
                     if (!error && response.statusCode == 200) {
