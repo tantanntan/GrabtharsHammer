@@ -38,12 +38,13 @@ module.exports = {
         async.series([
             function(callback){
                 //generate reply
-                if (text.length > 100) {
+                if (text.length > 200) {
                     content['text'] = "話が長いニョロ・・・。";
-                    posttext = "手短にお願いするニョロ。俺忙しいしニョロ。"
+                    posttext = "手短にお願いするニョロ。俺忙しいニョロ。"
                 }
                 else {
                     MecabService.message(text,function(flg,res,cnt){
+                        console.log(res);
                         content['text'] = 'へえ、これは「' + res + '」って読めばいいニョロか？';
                         
                         if(!flg){
@@ -59,12 +60,13 @@ module.exports = {
                         }
                     });
                 }
+                res.set(headers);
                 callback(null,"first");
             },
             function(callback){
-                res.set(headers);
                 request.post(options, function(error, response, body) {
                     if (!error && response.statusCode == 200) {
+                        console.log(options);
                         //                console.log(body);
                         //send further.
                         resBody['content']['text'] = posttext ? posttext : '寂しいニョロか？';
