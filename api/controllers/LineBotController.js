@@ -44,8 +44,8 @@ module.exports = {
                     posttext = "手短にお願いするニョロ。俺忙しいニョロ。"
                 }
                 else {
-                    MecabService.message(text,function(flg,res,cnt){
-                        reptext = 'へえ、これは「 ' + res + ' 」って読めばいいニョロか？';
+                    MecabService.message(text,function(flg,kana,cnt){
+                        reptext = 'へえ、これは「 ' + kana + ' 」って読めばいいニョロか？';
                         
                         if(flg){
                             if (! text.trim().length){
