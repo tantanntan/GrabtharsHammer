@@ -33,7 +33,11 @@
     "include-all": "~0.1.6",
     "rc": "1.0.1",
     "sails": "~0.12.1",
-    "sails-disk": "~0.10.9"
+    "sails-disk": "~0.10.9",
+    "sails-redis": "~0.10.7",
+    "sails-twitter": "~0.0.1",
+    "connect-redis": "~3.0.2",
+    "node-mecab": "0.0.4"
   },
   "scripts": {
     "debug": "node debug app.js",

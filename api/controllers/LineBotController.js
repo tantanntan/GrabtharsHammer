@@ -19,6 +19,8 @@ module.exports = {
         var to_array = [];
         to_array.push(content['from']);
         var text = content['text'];
+        
+        //generate reply
         if (text.length > 20) {
             content['text'] = "話が長いニョロ・・・。";
         }
@@ -27,9 +29,9 @@ module.exports = {
         }
 
         var resBody = {
-            to: to_array,
-            toChannel: 1383378250,
-            eventType: "138311608800106203",
+            to: to_array, //destination ids
+            toChannel: 1383378250, //fix value
+            eventType: "138311608800106203", //fix value
             content: content
         };
         var options = {
@@ -45,6 +47,7 @@ module.exports = {
         request.post(options, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 //                console.log(body);
+                //send further.
                 resBody['content']['text'] = '寂しいニョロか？';
                 sendToUser(options, resBody);
             }
