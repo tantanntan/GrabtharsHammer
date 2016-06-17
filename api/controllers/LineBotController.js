@@ -21,11 +21,20 @@ module.exports = {
         var text = content['text'];
         
         //generate reply
-        if (text.length > 20) {
+        if (text.length > 100) {
             content['text'] = "話が長いニョロ・・・。";
         }
         else {
-            content['text'] = 'へえ、「' + text + '」ってこと？がっかりニョロよ';
+            MecabService.message(text,function(flg,res,cnt){
+                content['text'] = 'へえ、これは「' + res + '」って読めばいいニョロか？';
+                if(!flg){
+                    if((text.length / 3) < cnt ){
+                        content['text'] += '\nツァ！！読めない文字入力しすぎだニョロッ！！！！';
+                    }else{
+                        content['text'] += '\n読めない文字は・・・仕方ないニョロ。当方機械ニョロ。';
+                    }
+                }
+            });
         }
 
         var resBody = {
