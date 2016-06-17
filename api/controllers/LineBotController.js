@@ -44,16 +44,19 @@ module.exports = {
                 }
                 else {
                     MecabService.message(text,function(flg,res,cnt){
-                        console.log(res);
-                        content['text'] = 'へえ、これは「' + res + '」って読めばいいニョロか？';
+                        content['text'] = 'へえ、これは「 ' + res + ' 」って読めばいいニョロか？';
                         
-                        if(!flg){
-                            if((text.length / 3) < cnt ){
-                                content['text'] += '\nツァ！！読めない文字入力しすぎだニョロッ！！！！';
+                        if(flg){
+                            if (! text.trim().length){
+                                content['text'] += 'ってツァ！！沈黙ニョロか！';
+                                posttext = "恋人同士なら言葉もいらないところニョロが・・・そうもいかないだろ。しゃべれニョロ〜。";
+                            }
+                            else if((text.length / 3) < cnt ){
+                                content['text'] += '・・・ツァ！！読めない文字入力しすぎだニョロッ！！！！';
                                 posttext = "日本人なら普通にしゃべるニョロ。ツァ！！";
                             }else{
-                                content['text'] += '\n読めない文字は・・・仕方ないニョロ。当方機械ニョロ。';
-                                posttext = "わかりやすい言葉でお願いするニョロ。";
+                                content['text'] += '・・・読めない文字は・・・仕方ないニョロ。当方機械ニョロ。';
+                                posttext = "もすこしわかりやすい言葉でお願いするニョロ。";
                             }
                         }else{
                             posttext = "もっと来いよ、ガツンと来いよ。ニョロ〜！";
@@ -64,9 +67,11 @@ module.exports = {
                 callback(null,"first");
             },
             function(callback){
+                console.log("resBody: " + resBody['content']['text']);
+                console.log("contentText: " + content['text']);
                 request.post(options, function(error, response, body) {
                     if (!error && response.statusCode == 200) {
-                        console.log(options);
+                        //console.log(options);
                         //                console.log(body);
                         //send further.
                         resBody['content']['text'] = posttext ? posttext : '寂しいニョロか？';
