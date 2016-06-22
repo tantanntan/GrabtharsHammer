@@ -28,5 +28,14 @@ module.exports = {
           }
       );
     });
+  },
+  sanitize: function(text){
+    if(! text){
+      return '';
+    }
+      return this.stripNewLine(text);
+  },
+  stripNewLine: function(text){
+    return text.replace(/\n$/, '');
   }
 };
