@@ -48,7 +48,7 @@ module.exports = {
                         reptext = 'へえ、これは「 ' + kana + ' 」って読めばいいニョロか？';
                         
                         if(flg){
-                            if (! text.trim().length){
+                            if (! text.trim().length ){
                                 reptext += 'ってツァ！！沈黙ニョロか！';
                                 posttext = "恋人同士なら言葉もいらないところニョロが・・・そうもいかないだろ。しゃべれニョロ〜。";
                             }
