@@ -1,7 +1,7 @@
 {
   "name": "GrabtharsHammer",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "a Sails/hubot application",
   "keywords": [],
   "dependencies": {
@@ -37,7 +37,8 @@
     "sails-redis": "~0.10.7",
     "sails-twitter": "~0.0.1",
     "connect-redis": "~3.0.2",
-    "mecab-async": "0.1.0"
+    "mecab-async": "0.1.0",
+    "node-mecab": "0.0.4"
   },
   "scripts": {
     "debug": "node debug app.js",
